@@ -18,6 +18,11 @@ const inventoryRoutes = require("./routes/inventory");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Trust proxy for Render/production (needed for secure cookies & Steam auth)
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+
 // CORS configuration
 app.use(
   cors({
